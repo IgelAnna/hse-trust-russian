@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Ваша роль: Участник А
+{% endblock %}
+
+{% block content %}
+
+    <p>
+    Сейчас у Вас есть <strong>{{Constants.endowment}}</strong>. Сколько Вы передадите Участнику Б?
+    </p>
+
+    {% formfield group.sent_amount label="Пожалуйста, введите число от 0 до 10:" %}
+    <p>
+    {% next_button %}
+    </p>
+
+    {% include Constants.instructions_template %}
+
+{% endblock %}

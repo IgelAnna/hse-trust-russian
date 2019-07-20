@@ -1,0 +1,65 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Результаты
+{% endblock %}
+
+{% block content %}
+    
+    {% if player.role == 'A' %}
+        <p>
+            Вы передали Участнику Б <strong>{{ group.sent_amount }}</strong>.
+
+                 {% if group.treatment == 'Y' %}
+   
+                 Эта сумма умножилась на <strong>{{ subsession.multiplier }}</strong>.
+                 {% endif %}
+        </p>
+        <p>
+        
+            
+            Участник Б вернул Вам <strong>{{ group.sent_back_amount }}</strong>.
+        </p>
+        <p>
+            <!-- You were initially endowed with {{ Constants.endowment }},
+            chose to send {{ group.sent_amount }},
+            received {{ group.sent_back_amount }}
+            thus you now have:
+            {{ Constants.endowment }}-{{ group.sent_amount }}+{{ group.sent_back_amount }}=<strong>{{ player.payoff }}</strong>
+            You total profit {{player.totalProfit}} -->
+            
+            Ваш выигрыш в этом раунде <strong>{{ player.payoff }}</strong>.
+        </p>
+        <p>
+            Ваш суммарный выигрыш за все прошедшие раунды <strong>{{ player.totalProfit }}</strong>.
+        </p>
+    {% else %}
+        <p>
+            Участник А передал Вам <strong>{{ group.sent_amount }}</strong>.
+        </p>
+        <p>
+            <!--They were tripled so you received {{ tripled_amount }}.-->
+            Вы вернули Участнику А <strong>{{ group.sent_back_amount }}</strong>.
+        </p>
+        <p>
+            <!--You received {{ tripled_amount }},
+            chose to return {{ group.sent_back_amount }}
+            thus you now have:
+            ({{ tripled_amount }})-({{ group.sent_back_amount }})=<strong>{{ player.payoff }}</strong>
+            You total profit {{player.totalProfit}} -->
+            Ваш выигрыш в этом раунде <strong>{{ player.payoff }}</strong>.
+        </p>
+        <p>
+            Ваш суммарный выигрыш за все прошедшие раунды <strong>{{ player.totalProfit }}</strong>.
+        </p>
+
+        </p>
+        .
+    {% endif %}
+
+    <p>{% next_button %}</p>
+
+    {% include Constants.instructions_template %}
+
+{% endblock %}

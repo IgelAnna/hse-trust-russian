@@ -1,0 +1,20 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Ваша роль: Участник Б
+{% endblock %}
+
+{% block content %}
+<p>
+    У вас было <strong>10 ECU</strong>.
+    Участник А передал Вам <strong>{{group.sent_amount}}</strong>, после чего эта сумма умножилась на <strong>{{ subsession.multiplier }}</strong>.
+    Сейчас у Вас есть <strong>10 ECU + {{tripled_amount}} = {{tripled_amount_with_endowment}}</strong>.
+    Сколько ECU Вы передадите Участнику А?
+</p>
+
+    {% formfield group.sent_back_amount label=prompt %}
+    <p>{% next_button %}</p>
+    {% include Constants.instructions_template %}
+
+{% endblock %}
