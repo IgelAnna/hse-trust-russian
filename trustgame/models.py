@@ -1,11 +1,9 @@
-import random
-import math
-import numpy
+
 from otree.api import (
     models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer,
     Currency as c, currency_range
 )
-import random
+
 
 doc = """
 This is a standard 2-player trust game where the amount sent by player 1 gets
