@@ -30,7 +30,7 @@ REAL_WORLD_CURRENCY_CODE = 'RUB'
 USE_POINTS = True
 POINTS_CUSTOM_NAME = 'ECU'
 
-ROOMS = []
+ROOMS = [{'name': 'hse', 'display_name': 'hse'}]
 
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
