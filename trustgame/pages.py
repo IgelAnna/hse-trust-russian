@@ -3,24 +3,22 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 
 
-class Introduction(Page):
-    pass
-   # form_model = 'player'
-   # form_fields = ['q1']
+class Intro(Page):
+    def is_displayed(self):
+        return self.round_number == 1
+
+
+class Instructions(Page):
     def is_displayed(self):
         return self.round_number == 1
 
 
 class Question(Page):
     form_model = 'player'
-    form_fields = ['q1']
-    form_fields = ['q2']
-    form_fields = ['q3']
-    
+    form_fields = ['q1', 'q2', 'q3']
+
     def is_displayed(self):
         return self.round_number == 1
-    
-
 
 
 class Send(Page):
@@ -40,6 +38,7 @@ class SendBackWaitPage(WaitPage):
     body_text = 'Пожалуйста, ожидайте другого участника!'
     title_text = 'Пожалуйста, подождите!'
 
+
 class SendBack(Page):
     """This page is only for P2
     P2 sends back some amount (of the tripled amount received) to P1"""
@@ -55,14 +54,15 @@ class SendBack(Page):
         tripled_amount_with_endowment = tripled_amount + 10
 
         return {
-                'tripled_amount_with_endowment': tripled_amount_with_endowment,
-                'tripled_amount': tripled_amount,
-                'prompt': 'Пожалуйста, введите число от 0 до {}'.format(tripled_amount)}
+            'tripled_amount_with_endowment': tripled_amount_with_endowment,
+            'tripled_amount': tripled_amount,
+            'prompt': 'Пожалуйста, введите число от 0 до {}'.format(tripled_amount)}
 
 
 class ResultsWaitPage(WaitPage):
     body_text = 'Пожалуйста, ожидайте другого участника!'
     title_text = 'Пожалуйста, подождите!'
+
     def after_all_players_arrive(self):
         self.group.set_payoffs()
 
@@ -77,7 +77,9 @@ class Results(Page):
 
 
 page_sequence = [
-    Introduction,
+    Intro,
+    Instructions,
+    Question,
     Send,
     SendBackWaitPage,
     SendBack,

@@ -63,31 +63,36 @@ class Group(BaseGroup):
         p1 = self.get_player_by_id(1)
         p2 = self.get_player_by_id(2)
         p1.payoff = Constants.endowment - self.sent_amount + self.sent_back_amount
-        p2.payoff = self.sent_amount * self.subsession.multiplier - self.sent_back_amount+10
+        p2.payoff = self.sent_amount * self.subsession.multiplier - self.sent_back_amount + 10
 
         p1.totalProfit = sum(p.payoff for p in p1.in_all_rounds())
         p2.totalProfit = sum(p.payoff for p in p2.in_all_rounds())
 
 
 class Player(BasePlayer):
-    q1 = models.IntegerField(label='Если вы в роли Участника А передадите Участнику Б 0 ECU. Какое максимальное количество ECU он сможет Вам передать на следующем этапе?')
+    q1 = models.IntegerField(
+        label='Если вы в роли Участника А передадите Участнику Б 0 ECU. Какое максимальное количество ECU он сможет Вам передать на следующем этапе?')
     totalProfit = models.CurrencyField()
 
     def q1_error_message(self, value):
         if value != 0:
-           return 'Проверьте Ваш ответ'
-    q2 = models.IntegerField(label='Если вы в роли Участника А передадите Участнику Б 5 ECU, при передаче эта сумма увеличится в 7 раз и Участник Б передаст Вам 20 ECU. Сколько ECU вы получите по результату раунда?')
+            return 'Проверьте Ваш ответ'
+
+    q2 = models.IntegerField(
+        label='Если вы в роли Участника А передадите Участнику Б 5 ECU, при передаче эта сумма увеличится в 7 раз и Участник Б передаст Вам 20 ECU. Сколько ECU вы получите по результату раунда?')
     totalProfit = models.CurrencyField()
 
     def q2_error_message(self, value):
         if value != 25:
-           return 'Проверьте Ваш ответ'
-    q3 = models.IntegerField(label='Сколько ECU получит Участник Б по результатам раунда, описанного в прошлом вопросе?')
+            return 'Проверьте Ваш ответ'
+
+    q3 = models.IntegerField(
+        label='Сколько ECU получит Участник Б по результатам раунда, описанного в прошлом вопросе?')
     totalProfit = models.CurrencyField()
 
     def q3_error_message(self, value):
         if value != 25:
-           return 'Проверьте Ваш ответ'
+            return 'Проверьте Ваш ответ'
 
     def role(self):
         return {1: 'A', 2: 'B'}[self.id_in_group]

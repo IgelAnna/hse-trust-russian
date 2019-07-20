@@ -6,19 +6,19 @@
 {% endblock %}
 
 {% block content %}
-    
+    <p>Ваша начальная сумма: <strong>{{ Constants.endowment }}</strong></p>
     {% if player.role == 'A' %}
         <p>
             Вы передали Участнику Б <strong>{{ group.sent_amount }}</strong>.
 
-                 {% if group.treatment == 'Y' %}
-   
-                 Эта сумма умножилась на <strong>{{ subsession.multiplier }}</strong>.
-                 {% endif %}
+            {% if group.treatment == 'Y' %}
+
+                Эта сумма умножилась на <strong>{{ subsession.multiplier }}</strong>.
+            {% endif %}
         </p>
         <p>
-        
-            
+
+
             Участник Б вернул Вам <strong>{{ group.sent_back_amount }}</strong>.
         </p>
         <p>
@@ -28,7 +28,7 @@
             thus you now have:
             {{ Constants.endowment }}-{{ group.sent_amount }}+{{ group.sent_back_amount }}=<strong>{{ player.payoff }}</strong>
             You total profit {{player.totalProfit}} -->
-            
+
             Ваш выигрыш в этом раунде <strong>{{ player.payoff }}</strong>.
         </p>
         <p>
@@ -60,6 +60,6 @@
 
     <p>{% next_button %}</p>
 
-    {% include Constants.instructions_template %}
+
 
 {% endblock %}

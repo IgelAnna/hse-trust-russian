@@ -17,17 +17,18 @@ SESSION_CONFIGS = [
         'display_name': "Trust Game",
         'num_demo_participants': 2,
         'app_sequence': ['trustgame'],
+        'use_browser_bots': False,
     },
 ]
-
 
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans
 LANGUAGE_CODE = 'ru'
 
 # e.g. EUR, GBP, CNY, JPY
-REAL_WORLD_CURRENCY_CODE = 'ECU'
-USE_POINTS = 0
+REAL_WORLD_CURRENCY_CODE = 'RUB'
+USE_POINTS = True
+POINTS_CUSTOM_NAME = 'ECU'
 
 ROOMS = []
 

@@ -1,0 +1,13 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Вопросы
+{% endblock %}
+
+{% block content %}
+    {% formfields %}
+    <p>{% next_button %}</p>
+{% include 'trustgame/includes/instructions_wrapper.html' %}
+
+{% endblock %}
